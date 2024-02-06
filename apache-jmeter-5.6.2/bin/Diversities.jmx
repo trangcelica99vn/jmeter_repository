@@ -1,0 +1,2481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.2">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Questions" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET/questions" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/questions</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST/questions" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;title&quot;: &quot;What is your question title?&quot;,&#xd;
+  &quot;type&quot;: &quot;text&quot;,&#xd;
+  &quot;categoryId&quot;: 138,&#xd;
+  &quot;values&quot;: [&#xd;
+    {&#xd;
+      &quot;key&quot;: &quot;us&quot;,&#xd;
+      &quot;name&quot;: &quot;United States&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;config&quot;: {&#xd;
+    &quot;mapDiversity&quot;: true,&#xd;
+    &quot;required&quot;: true,&#xd;
+    &quot;tooltip&quot;: &quot;Here is your question tooltip&quot;,&#xd;
+    &quot;placeholder&quot;: &quot;Place holder display behind the input&quot;,&#xd;
+    &quot;isSubQuestion&quot;: true,&#xd;
+    &quot;subQuestion&quot;: {&#xd;
+      &quot;questionId&quot;: 0,&#xd;
+      &quot;matchedValue&quot;: &quot;string&quot;&#xd;
+    }&#xd;
+  },&#xd;
+  &quot;_dataset&quot;: {&#xd;
+    &quot;key&quot;: &quot;712&quot;,&#xd;
+    &quot;name&quot;: &quot;Test LinkedIn&quot;&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/questions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T11:27:03.158</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T11:27:03.159</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET/questions/aggregate" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/questions/aggregate?type=diversity</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T09:44:38.299</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTY1NTI3fQ.AaEGJvWD9FN3ZgJogR-UejdD824DTaFNa1v6MDW0al0</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiNTAyYWE2MjlmZDE2YjY0MCIsInRyIjoiNTVhMTJjNzAwMzgwMTVjNmE4MjczNTZhNTQxNzQ2NDAiLCJ0aSI6MTcwMzU2MTkyODEzOCwidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud/admin/gdpr/diversity_questions</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-55a12c70038015c6a827356a54174640-502aa629fd16b640-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-502aa629fd16b640----1703561928138</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">cookie</stringProp>
+                <stringProp name="Header.value">intercom-device-id-ux6qzfz6=bea77169-019a-48d2-9214-eecf39fb7556; _ga=GA1.2.908595738.1701396699; intercom-session-ux6qzfz6=TFFMYzZJd3ZDeWszd1FKdE5hMjdWc1FnQzdES0l5NjYvMHc1cE9hR3hZSTN2ZmNrRm5xV0NvcGM2Q2c1MER2ay0tN3BIMDBZTFdWZHY2SjY1RGV5NVh1Zz09--49806698879fd75a188b0c1d23f5fdc144ab49e9; _ga_WP44G8FN9Q=GS1.1.1703243458.9.1.1703245104.0.0.0; _ga_W8X8MWQP9S=GS1.1.1703243456.9.1.1703245104.0.0.0; stack_id=stg-1; krakatoa_advanced_reports=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTYzNzAxLCJnYV9iZWFyZXIiOm51bGwsImdhX3ZpZXdfaWQiOm51bGwsImdhNF9wcm9maWxlX2lkIjpudWxsLCJnYTRfZ3RtX2lkIjpudWxsfQ.xlX5TfTf3L1eCxUenl7tM2aj2fDaJnZ-TNg8QU4l7v0; krakatoa_diversity=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTY1NTI3fQ.AaEGJvWD9FN3ZgJogR-UejdD824DTaFNa1v6MDW0al0; __Host-_krakatoa_session=TMCNNbVu2L3s%2FB1m%2BpVebxMEQge4pHQOHuW9TkK1kR3m%2BcD%2FYuooMGiDdxrFStoaXKIRd5BEw6w8WJpXzgCXGrIZiEF9tXETd%2FrqBtbZkzwvNAx3AE6k1JrK41HnH1nSPlVtZVLugiKZzws41aL%2FMcJkqnKmmJLJJwti7Hb8fzHStgoxehKWuh4wX8WfnGIS1WGIQoRtQr3KZ00NSWg832%2BupaaQfOrH1Pwgm44lLPgBTf5yFQbEvsaV%2FsuZrMmjVcYqVlcUMA6hCOy8x7hTj59EdcEKySCxXpsCeqWfWLZaUyNr%2Fyh%2BMJLSu58P2Fpu3R9lYevE9%2BOvUrJV8y5JUB8TjHMNinegup7RC4FKV%2FAVIrd0KFSqCBKaHNY3MX0XlhlGvWNHAI1t3oJ6G%2BTJHqGK1oR2DPKRa8MwRqSzG3g8%2Bqy9wbOiTUqWDQf7GYsFVQ4g7N2skXRlZ2IRmePfwrxZ4UatgpbRwrTjoKe8FdaIsm0juLT%2FeTkApBuDW9MjghD%2FED5WXZ6RfYx1pGnnXrLVuUZADdGmAHjbi93pYAJf5jUyn1gzscjO6%2FgBEHejQPElh4VjClQ%2BAK6kWlmKQ10oWubTDDhe4Xw7NKn1ksPwpT89e1fsvJxV83PoNT4zXPzDWnKTuprRAUnn1KIFl7wVci6L0Zkq3gFDvTfeJJEzjv3%2Bmfry%2FY9%2BeV0v4yvWfy45w%2BrQ2X1qBXMWCfYLf4k9aroFPdQsUQA%2BpHI5TbrTBkSQEYiSwXQ%2BRbCq7VEp%2FhRDXWYcM09DLMs75lX9tNBZ%2FLVaSGd8rVWat%2BEoMLWqKuzoXJzOZ7l2QI5GQPMnwsSo9R2usOBpzwrFtdY3Rke7LGXwGsYGPWkxcvJOPok9201S--%2BRy5ymS9E%2Fdyj4Ig--xjOLHV2gEmVaEKlyYzR4OA%3D%3D</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T09:44:38.299</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/datasets/557" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">manpower-be.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/datasets/557</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:04:05.901</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-data-deletion.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjoxMDUyLCJqb2JfZGF0YXNldF9pZCI6MTA1MiwidXNlcl9kYXRhc2V0X2lkIjoxMDUyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6ODUxLCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzA0NDM2NTMzfQ.PZu7Yp6cssN90uBRsikE3UFMS1FDaacO3LbaNh2DxN8</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiYWU5NzMzZjc1OTYxN2NkMCIsInRyIjoiMTYzMzAyNjYyOTRlMTY2MTgyZjQzOTQ5NjA3ZGVkZjAiLCJ0aSI6MTcwNDQzMjkzMDIzNywidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-data-deletion.staging.krakatoa.stg-1.volcanic.cloud/admin/diversity_dashboard_configuration</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-16330266294e166182f43949607dedf0-ae9733f759617cd0-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-ae9733f759617cd0----1704432930237</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:04:05.901</stringProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="questions?type=diversity" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">manpower-be.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/questions?type=diversity&amp;records=-1&amp;page=1&amp;dataset_key=33&amp;seek_debugger=true</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:11:28.268</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-data-deletion.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjoxMDUyLCJqb2JfZGF0YXNldF9pZCI6MTA1MiwidXNlcl9kYXRhc2V0X2lkIjoxMDUyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6ODUxLCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzA0NDQ0MDA3fQ.iBs-sqSmOwWoZyrJz7H7JIOWSvE43Ll7DfiWbHceDy4</stringProp>
+              </elementProp>
+              <elementProp name="cache-control" elementType="Header">
+                <stringProp name="Header.name">cache-control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="pragma" elementType="Header">
+                <stringProp name="Header.name">pragma</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://diversely.staging.krakatoa.eu-2.volcanic.cloud/admin/diversity_dashboard_configuration</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:11:28.268</stringProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="questions/aggregate" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-data-deletion.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/questions/aggregate?type=diversity</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:14:53.215</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTY1NTI3fQ.AaEGJvWD9FN3ZgJogR-UejdD824DTaFNa1v6MDW0al0</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiNTAyYWE2MjlmZDE2YjY0MCIsInRyIjoiNTVhMTJjNzAwMzgwMTVjNmE4MjczNTZhNTQxNzQ2NDAiLCJ0aSI6MTcwMzU2MTkyODEzOCwidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud/admin/gdpr/diversity_questions</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-55a12c70038015c6a827356a54174640-502aa629fd16b640-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-502aa629fd16b640----1703561928138</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2024-01-19T14:14:53.215</stringProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="RespTimeGraph.graphtitle">Responde time</stringProp>
+        <stringProp name="RespTimeGraph.interval">3000</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Questions-Categories" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST/questions-categories" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{   &quot;name&quot;: &quot;Test Gender&quot;,   &quot;slug&quot;: &quot;gender&quot;,   &quot;type&quot;: &quot;diversity&quot;,   &quot;description&quot;: &quot;Gender diversity questions category&quot;,   &quot;details&quot;: {     &quot;mandatory&quot;: true   } }</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/questions-categories</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T14:19:39.359</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T14:19:39.359</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_message</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Questions-Configs" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST/questions-configs" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{   &quot;_ref&quot;: {     &quot;key&quot;: &quot;712&quot;,     &quot;name&quot;: &quot;Test LinkedIn&quot;   },   &quot;type&quot;: &quot;country&quot;,   &quot;_values&quot;: [     {       &quot;category&quot;: {         &quot;key&quot;: &quot;us&quot;,         &quot;name&quot;: &quot;United States&quot;       },       &quot;question&quot;: {         &quot;id&quot;: 0,         &quot;slug&quot;: &quot;Test&quot;,         &quot;title&quot;: &quot;This is test question&quot;       },       &quot;enable&quot;: true,       &quot;seq&quot;: 0     }   ] }</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/questions-configs</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T13:42:04.545</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-08T13:42:04.545</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE/questions-configs/{refKey}" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="ref_key" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">ref_key</stringProp>
+                <stringProp name="Argument.value">712</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/questions-configs</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Datatsets" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT/datasets/configs/questions" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{
+    &quot;_dataset&quot;: {
+        &quot;key&quot;: &quot;722&quot;,
+        &quot;name&quot;: &quot;Test LinkedIn OpenID&quot;
+    },
+    &quot;_country&quot;: {
+        &quot;key&quot;: &quot;US&quot;,
+        &quot;name&quot;: &quot;United States&quot;
+    },
+    &quot;_configs&quot;: [
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;gender&quot;,
+                &quot;name&quot;: &quot;gender&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;244&quot;,
+                    &quot;name&quot;: &quot;gender_male&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                },
+                {
+                    &quot;key&quot;: &quot;245&quot;,
+                    &quot;name&quot;: &quot;gender_female&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                },
+                {
+                    &quot;key&quot;: &quot;246&quot;,
+                    &quot;name&quot;: &quot;gender_binary&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;ethnicity&quot;,
+                &quot;name&quot;: &quot;ethnicity&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;306&quot;,
+                    &quot;name&quot;: &quot;ethic_global_pr&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;307&quot;,
+                    &quot;name&quot;: &quot;ethic_global_am&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;308&quot;,
+                    &quot;name&quot;: &quot;ethic_global_other&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;age&quot;,
+                &quot;name&quot;: &quot;age&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;249&quot;,
+                    &quot;name&quot;: &quot;age_under_30&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;250&quot;,
+                    &quot;name&quot;: &quot;age_30_40&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;251&quot;,
+                    &quot;name&quot;: &quot;age_40_50&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;252&quot;,
+                    &quot;name&quot;: &quot;age_over_50&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;sexual-orientation&quot;,
+                &quot;name&quot;: &quot;sexual-orientation&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;262&quot;,
+                    &quot;name&quot;: &quot;orientation_gay_les&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;265&quot;,
+                    &quot;name&quot;: &quot;orientation_bi_sexual&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;267&quot;,
+                    &quot;name&quot;: &quot;orientation_hetero_sexual&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;268&quot;,
+                    &quot;name&quot;: &quot;orientation_other&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;disability&quot;,
+                &quot;name&quot;: &quot;disability&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;255&quot;,
+                    &quot;name&quot;: &quot;disability_mental_health&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;259&quot;,
+                    &quot;name&quot;: &quot;disability_physical&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;260&quot;,
+                    &quot;name&quot;: &quot;disability_other&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;261&quot;,
+                    &quot;name&quot;: &quot;disability_no&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;veteran&quot;,
+                &quot;name&quot;: &quot;veteran&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;442&quot;,
+                    &quot;name&quot;: &quot;veteran_veteran&quot;,
+                    &quot;currentScore&quot;: 50,
+                    &quot;targetScore&quot;: 50
+                },
+                {
+                    &quot;key&quot;: &quot;443&quot;,
+                    &quot;name&quot;: &quot;veteran_non_veteran&quot;,
+                    &quot;currentScore&quot;: 50,
+                    &quot;targetScore&quot;: 50
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;socio-economic&quot;,
+                &quot;name&quot;: &quot;socio-economic&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;439&quot;,
+                    &quot;name&quot;: &quot;socio_economic_high&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                },
+                {
+                    &quot;key&quot;: &quot;440&quot;,
+                    &quot;name&quot;: &quot;socio_economic_medium&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                },
+                {
+                    &quot;key&quot;: &quot;441&quot;,
+                    &quot;name&quot;: &quot;socio_economic_low&quot;,
+                    &quot;currentScore&quot;: 33,
+                    &quot;targetScore&quot;: 33
+                }
+            ]
+        },
+        {
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;religion&quot;,
+                &quot;name&quot;: &quot;religion&quot;
+            },
+            &quot;values&quot;: [
+                {
+                    &quot;key&quot;: &quot;428&quot;,
+                    &quot;name&quot;: &quot;religion_christianity&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;429&quot;,
+                    &quot;name&quot;: &quot;religion_confucianism&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;430&quot;,
+                    &quot;name&quot;: &quot;religion_hinduism&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                },
+                {
+                    &quot;key&quot;: &quot;431&quot;,
+                    &quot;name&quot;: &quot;religion_islam&quot;,
+                    &quot;currentScore&quot;: 25,
+                    &quot;targetScore&quot;: 25
+                }
+            ]
+        }
+    ],
+    &quot;type&quot;: &quot;country&quot;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/datasets/configs/diversities</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:42:03.496</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTgwNjg4fQ.m0pgL4nDZWnbU-9WbwQxNeT1-FHXcXhDouStxQ6J6Ws</stringProp>
+              </elementProp>
+              <elementProp name="content-type" elementType="Header">
+                <stringProp name="Header.name">content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiYjk4ZTBjNzJiYjlmNDE4MCIsInRyIjoiYmRiMjM4ZDY3YTIwZDY0Y2ZkYWYzNGZlZDhkYjg2YjAiLCJ0aSI6MTcwMzU3NzE0ODc4MCwidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="origin" elementType="Header">
+                <stringProp name="Header.name">origin</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud/admin/diversity_dashboard_configuration</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-bdb238d67a20d64cfdaf34fed8db86b0-b98e0c72bb9f4180-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-b98e0c72bb9f4180----1703577148780</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">cookie</stringProp>
+                <stringProp name="Header.value">intercom-device-id-ux6qzfz6=bea77169-019a-48d2-9214-eecf39fb7556; _ga=GA1.2.908595738.1701396699; intercom-session-ux6qzfz6=TFFMYzZJd3ZDeWszd1FKdE5hMjdWc1FnQzdES0l5NjYvMHc1cE9hR3hZSTN2ZmNrRm5xV0NvcGM2Q2c1MER2ay0tN3BIMDBZTFdWZHY2SjY1RGV5NVh1Zz09--49806698879fd75a188b0c1d23f5fdc144ab49e9; _ga_WP44G8FN9Q=GS1.1.1703243458.9.1.1703245104.0.0.0; _ga_W8X8MWQP9S=GS1.1.1703243456.9.1.1703245104.0.0.0; stack_id=stg-1; krakatoa_advanced_reports=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTgwNjc2LCJnYV9iZWFyZXIiOm51bGwsImdhX3ZpZXdfaWQiOm51bGwsImdhNF9wcm9maWxlX2lkIjpudWxsLCJnYTRfZ3RtX2lkIjpudWxsfQ.LP7OYZWIxld8ClyLlA9Q_IuD0JN-p9khR2ohhzQ1zjk; krakatoa_diversity=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTgwNjg4fQ.m0pgL4nDZWnbU-9WbwQxNeT1-FHXcXhDouStxQ6J6Ws; __Host-_krakatoa_session=uB%2FeItf259YiBYviHlJ5l8d6Il4DK76Ib6%2FTlQuGL3QKDlMO8tGVY2l20OsktfhPRbM9uw77vA6lWanYaZwe1xwMyjW5d4HOINyzRXvKuJS8Y19z8l9uikPbGDIP5TO8SPLL8PEqB3SBwoGVsQ4Z1KqPGfK7%2F1%2FP1MCkFWma%2Fc3J2ihuJGuyLR3a7wr89w4NCAm%2FvMsV%2Bmh18zPAKZ3beMFYwmo13Cbno7zNotxeOYF7oPT%2FizmHwPgzHvLnFVs1kL3bcIovwFiVfo%2BGkBQdThlua%2F28MtmcKa3JAjPw6KQxh7CxMfAfdR%2BpJn8AZLPfLIxTogk4Xj%2BWAjbBYrLqy%2BOiwJxdKLEsogkFciZN%2B0GvTciE0lEPyztWMDGiEt3MQzo4uxXZtkgsS75mN0mYzT7Im7u9cn6yirhWBTwGLCX4N8pE73HMTWwbz0SZEetfigYOAEipjvlA7N5ZmUgWpm5DPUDOQiCaGLuEbHYjSRxqtZCBetGpX%2BrM2hNcqET%2B6ZboMo5WDI7VJ2%2FfQ8sJS7P2KLmhx6RduU%2Fj%2B6L%2BxThifWGkkLzWmK56kywCkFIJdfqjW1lpB3BcuH8Um96Q3JqznKaanlFSxWnRDEYcEpdaIKZil551oa8ALyY240y2%2BHn4%2F2zI2QFFcGRzHzebHVeyriihWQbqoV1Ls5YUZ%2BjRdZxzmXEUiSyzkR8aAQIRRV91TB4lYlHmOlnifOZ0JSevRdOP3dzX4kdPyGbjhaElCLzKXMWIO8d4wm2Wud%2FOepHpujWi2pMn81c2WsrTgsfi2EBUugCoRo0%2BkcjwGj%2BV4XZcKmi9oAx1BhuFkCWs9wR%2BB%2FiFTAdfUhyaZyLxA5lwxnyW%2Fy%2FNpmxt1XufF%2B1lr72c--hEUsFrd0wtdn0MHQ--nViM9hQGQFDdJJe12rTugw%3D%3D</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:42:03.496</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+            <boolProp name="ResultCollector.success_only_logging">true</boolProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT/diversity/proxy/datasets/configs/questions" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{
+    &quot;_dataset&quot;: {
+        &quot;key&quot;: &quot;722&quot;,
+        &quot;name&quot;: &quot;Test LinkedIn OpenID&quot;
+    },
+    &quot;_country&quot;: {
+        &quot;key&quot;: &quot;us&quot;,
+        &quot;name&quot;: &quot;United States&quot;
+    },
+    &quot;_configs&quot;: [
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;sexual-orientation&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;age&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;veteran&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;ethnicity&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;disability&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;gender&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;socio-economic&quot;
+            }
+        },
+        {
+            &quot;manual&quot;: &quot;ask&quot;,
+            &quot;ai&quot;: &quot;never_ask&quot;,
+            &quot;category&quot;: {
+                &quot;key&quot;: &quot;religion&quot;
+            }
+        }
+    ]
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/datasets/configs/questions</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:48:37.779</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNDc0MDM3fQ.Di1oyjX8Nx3oiGsohjmwBt-krZJrqMUje0sLS1gYdnY</stringProp>
+              </elementProp>
+              <elementProp name="content-type" elementType="Header">
+                <stringProp name="Header.name">content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiMDAxM2I4YjFjNDRlNGQwMCIsInRyIjoiOGZjNWFmZDQwMTlhYjc3YTQwY2JlNGQ1MTA2NDY0ODAiLCJ0aSI6MTcwMzQ3MDcyNTU5NSwidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="origin" elementType="Header">
+                <stringProp name="Header.name">origin</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud/admin/gdpr/diversity_questions</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-8fc5afd4019ab77a40cbe4d510646480-0013b8b1c44e4d00-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-0013b8b1c44e4d00----1703470725595</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">volcanic</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">cookie</stringProp>
+                <stringProp name="Header.value">intercom-device-id-ux6qzfz6=bea77169-019a-48d2-9214-eecf39fb7556; _ga=GA1.2.908595738.1701396699; intercom-session-ux6qzfz6=TFFMYzZJd3ZDeWszd1FKdE5hMjdWc1FnQzdES0l5NjYvMHc1cE9hR3hZSTN2ZmNrRm5xV0NvcGM2Q2c1MER2ay0tN3BIMDBZTFdWZHY2SjY1RGV5NVh1Zz09--49806698879fd75a188b0c1d23f5fdc144ab49e9; _ga_WP44G8FN9Q=GS1.1.1703243458.9.1.1703245104.0.0.0; _ga_W8X8MWQP9S=GS1.1.1703243456.9.1.1703245104.0.0.0; krakatoa_advanced_reports=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNDc0MDA5LCJnYV9iZWFyZXIiOm51bGwsImdhX3ZpZXdfaWQiOm51bGwsImdhNF9wcm9maWxlX2lkIjpudWxsLCJnYTRfZ3RtX2lkIjpudWxsfQ.LGzhZR8xgLtsa-pIeyjwHYOaaL_BjCCwR7gBP97Q9DE; stack_id=stg-1; krakatoa_diversity=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNDc0MDM3fQ.Di1oyjX8Nx3oiGsohjmwBt-krZJrqMUje0sLS1gYdnY; __Host-_krakatoa_session=TfXFmpHtpSkOz4RMjvC%2BLc4n%2FOSqQvfaTa747XXjpe8SBmt%2B35svIXAGAOTqzk2FsAXYoO3k4NJ4mDsbD1cTIrw%2Bv1JDWxZGD1N0yRYB%2FL9ePdiAJefBagha63WY7Rd20xDfQpJWXz2fMaL7d0VOtUH3A62Q0iPM7sTYizVONejNdEewobeQSQBJByQiuz84l1FX2UWzF34J%2FIxavVqU60zQfwR%2FYoHkaJ7T%2Bk3xrNmDB%2BIuGPTZi1Z7UBKCkGmyIoLAD7p744lAgc3iBGBT8z271aokmkFl%2Fd3bk2s%2FYWts34H6v3uS2v1rzzXmAd%2FxfCoa1rTjOhRB%2BSz8ACXRYiodEhtHxT56cs2auBLCXOV82NeJ181IwxlNdoHVNFoXqVmimxkYwzPL4cA32Q55BBrSfmQ3wpmpiUXCwzY86XIo91LR54v1qpgJbZEgGWk1bzTyXY3VMAQGrz6YggiDVPc0d0dFZrlP3mRLc2ciMCahu7PUYPTG7%2BHNL3zvzEfDMA7Qh9k7Mr9GD13M%2B0Q3yv3B6L7UTK9v2c0nov6Sve89CJ%2BhunyOsb1%2FoZZ2LDtgWmJJhsjNTsBxARGoC9B3Y4jMvKlha0%2FC2pKbYa3jfwrCSE3nymH1HkKWhhEILQNw4XYZYcYkws6t%2BrJwc06JgftEjfyCtIYSzkYkfuyZQx4lQabrGJZLKHaC5k0vqm5TuqVdDp%2BPnVxug5oGRQwBySV4P%2FbNlUGEPGl8mPXb%2F680FDlWUJHGK6cCQraQZfVO%2Fz7zuGqehY7blm%2BodN%2F3PQk4xkmB%2BhZW552H90vj3H3vwuhIgMCX%2BDkRfmKCceJCuCNh8YOMhv0IUhzAtLGbU3tTaXxrRAxS0kO48ASJR%2FOwE0l1--t2wxZ%2F6gSelDf7mY--SZ2zfhP083TV%2F2RovtRypA%3D%3D</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:48:37.779</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Diversities" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET/diversities" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/diversity/proxy/diversities?type=gender&amp;records=-1&amp;page=1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:40:07.455</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="authority" elementType="Header">
+                <stringProp name="Header.name">authority</stringProp>
+                <stringProp name="Header.value">test-linkedin.staging.krakatoa.stg-1.volcanic.cloud</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+              </elementProp>
+              <elementProp name="accept-language" elementType="Header">
+                <stringProp name="Header.name">accept-language</stringProp>
+                <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="authorization" elementType="Header">
+                <stringProp name="Header.name">authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTY1NjcwfQ.JJtBGPzN75ftqPyDV_QLRkBn57gSJe58-i47jtJF64s</stringProp>
+              </elementProp>
+              <elementProp name="newrelic" elementType="Header">
+                <stringProp name="Header.name">newrelic</stringProp>
+                <stringProp name="Header.value">eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjM4NzU4MzciLCJhcCI6IjUzODQ5NzY0NCIsImlkIjoiZDI2ODkxMmQ5OWU3N2VlMCIsInRyIjoiMDg5YTc1ZGM0ZmViMTc1NzJhNDY2NTBhYjc2N2FjNTAiLCJ0aSI6MTcwMzU2MjA3MDc0MCwidGsiOiIyOTg2Mzc2In19</stringProp>
+              </elementProp>
+              <elementProp name="referer" elementType="Header">
+                <stringProp name="Header.name">referer</stringProp>
+                <stringProp name="Header.value">https://test-linkedin.staging.krakatoa.stg-1.volcanic.cloud/admin/diversity_dashboard_configuration</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Microsoft Edge&quot;;v=&quot;120&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-dest" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-mode" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="sec-fetch-site" elementType="Header">
+                <stringProp name="Header.name">sec-fetch-site</stringProp>
+                <stringProp name="Header.value">same-origin</stringProp>
+              </elementProp>
+              <elementProp name="traceparent" elementType="Header">
+                <stringProp name="Header.name">traceparent</stringProp>
+                <stringProp name="Header.value">00-089a75dc4feb17572a46650ab767ac50-d268912d99e77ee0-01</stringProp>
+              </elementProp>
+              <elementProp name="tracestate" elementType="Header">
+                <stringProp name="Header.name">tracestate</stringProp>
+                <stringProp name="Header.value">2986376@nr=0-1-3875837-538497644-d268912d99e77ee0----1703562070740</stringProp>
+              </elementProp>
+              <elementProp name="user-agent" elementType="Header">
+                <stringProp name="Header.name">user-agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0</stringProp>
+              </elementProp>
+              <elementProp name="x-domain" elementType="Header">
+                <stringProp name="Header.name">x-domain</stringProp>
+                <stringProp name="Header.value">hello</stringProp>
+              </elementProp>
+              <elementProp name="x-newrelic-id" elementType="Header">
+                <stringProp name="Header.name">x-newrelic-id</stringProp>
+                <stringProp name="Header.value">Vw4AVF5QDxADUVRRBQkGUlc=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">cookie</stringProp>
+                <stringProp name="Header.value">intercom-device-id-ux6qzfz6=bea77169-019a-48d2-9214-eecf39fb7556; _ga=GA1.2.908595738.1701396699; intercom-session-ux6qzfz6=TFFMYzZJd3ZDeWszd1FKdE5hMjdWc1FnQzdES0l5NjYvMHc1cE9hR3hZSTN2ZmNrRm5xV0NvcGM2Q2c1MER2ay0tN3BIMDBZTFdWZHY2SjY1RGV5NVh1Zz09--49806698879fd75a188b0c1d23f5fdc144ab49e9; _ga_WP44G8FN9Q=GS1.1.1703243458.9.1.1703245104.0.0.0; _ga_W8X8MWQP9S=GS1.1.1703243456.9.1.1703245104.0.0.0; stack_id=stg-1; krakatoa_advanced_reports=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTYzNzAxLCJnYV9iZWFyZXIiOm51bGwsImdhX3ZpZXdfaWQiOm51bGwsImdhNF9wcm9maWxlX2lkIjpudWxsLCJnYTRfZ3RtX2lkIjpudWxsfQ.xlX5TfTf3L1eCxUenl7tM2aj2fDaJnZ-TNg8QU4l7v0; krakatoa_diversity=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhc2V0X2lkIjo3MjIsImpvYl9kYXRhc2V0X2lkIjo3MjIsInVzZXJfZGF0YXNldF9pZCI6NzIyLCJleHRyYV9jYXRlZ29yaXNhdGlvbl9maWx0ZXJzIjpbXSwic2l0ZV9pZCI6Mzg4LCJzdGFja19pZCI6InN0Zy0xIiwiZXhwIjoxNzAzNTY1NjcwfQ.JJtBGPzN75ftqPyDV_QLRkBn57gSJe58-i47jtJF64s; __Host-_krakatoa_session=3KwwQdig7Q%2Bcp6mfymlol8zIqZDXEeKInkMDi1%2B2silEjX20GJtvES5QhmWcKjYYrk%2B9CyGzzSANpEQE9nVeExOyi1iTL5Qumpl%2FAMPehWgAbigwJsnXPQsfc2hzxkLAq%2BMJQGV4fqD%2B8jFAwq%2BgRlmireGVygW8ocd64Fm2pMZumShoLybFG4n33AAC7SD4JbeA1LRzvMXhTOVsTrxTWjn73gY9a9cXHy2B16Ch68e6EyFTajShjKWNzi%2FlzYhB6vHG9V8TSoKO3wiVKSXRPRmBCtS2BwpWQuEsmAhnMeyQsU02vspLwZhrC%2FXJqzyLkVL0rm9V%2BR9A0a8hSsMocAfKmAmlexrpO%2BRcrJm9SkYb8YH9qE0WG4%2BFPfX6%2BOz57HZ4vHpnz1iG70BpeKjHFBnuZIFl0g9ZtlzdzwgVGcVwG4HQlYAy0t29wT%2F%2BdNKfnCnxQMzKJVnkyTpnzpxapEcDRKt90HHzcZ7NncOZDnrGxeOwbI0TTyINhKli3rrRT2z1toGnesvC7yb8T%2FhW9JVlFTim0qSLlsrFhU%2BPgyX%2BtFaHWuGISDGBPBVBLyrL5KTJQf8cUP9b7LDnh9Ft0FxaQdkYVrBdw3vixOZi%2FxE7k8dv3%2Bdd5ckl6n18BsozHYkg3GqJaOGWqgViH%2BrlwFvaNxIWL68ZYVkW0vGOSwUfzC7CBfkU7CuTew91TOdFUvst5d9w2MyNWgkXGTHeqiVWyK%2B3sMpo4E4ojzOZ1%2FwaM6KYXmKL5freI2V6hlzXS%2B1Fg%2BXZa0w21bRMIqAyacUapbSvx6dECgv9HrBJ4hMDNpHtxU2r91D6x3Ihg65KPLvlI0xcTtz2aNE6pWtGVMty5HGlw99QifT0qJFz%2FWnsa3Hc--qBC%2BBS1W46OA5NPU--bokOzKu5i99PUhwyTayqcg%3D%3D</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">Created from cURL on 2023-12-27T12:40:07.455</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Applicants" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-domain</stringProp>
+              <stringProp name="Header.value">volcanic</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET/applicants/applicantId" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="applicantID" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">applicantID</stringProp>
+                <stringProp name="Argument.value">123</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/applicants/applicantId</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST/applicants" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;rating&quot;: 0,&#xd;
+  &quot;feedback&quot;: &quot;string&quot;,&#xd;
+  &quot;_dataset&quot;: {&#xd;
+    &quot;key&quot;: &quot;712&quot;,&#xd;
+    &quot;name&quot;: &quot;Test Linkedin&quot;&#xd;
+  },&#xd;
+  &quot;_applicant&quot;: {&#xd;
+    &quot;key&quot;: &quot;123&quot;,&#xd;
+    &quot;name&quot;: &quot;Trang Nguyen&quot;&#xd;
+  },&#xd;
+  &quot;_profile&quot;: {&#xd;
+    &quot;gender&quot;: &quot;Female&quot;,&#xd;
+    &quot;ethnicity&quot;: &quot;Asian&quot;,&#xd;
+    &quot;country&quot;: &quot;Viet Nam&quot;,&#xd;
+    &quot;age&quot;: &quot;20-30 years old&quot;&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/applicants</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET/applicants/gender" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="firstName" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">firstName</stringProp>
+                <stringProp name="Argument.value">Trang</stringProp>
+              </elementProp>
+              <elementProp name="lastName" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">lastName</stringProp>
+                <stringProp name="Argument.value">Nguyen</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/applicants/gender</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="stagingDiversity" elementType="Argument">
+            <stringProp name="Argument.name">stagingDiversity</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.value">diversity-alb.stg-1.volcanic.cloud</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
