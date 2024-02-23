@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- Diversities.jmx
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: JMeterInstaller@0
+  inputs:
+    jmeterVersion: '5.4.2'
+- task: CmdLine@2
+  inputs:
+    script: 'jmeter -n -t Diversities.jmx -l results.jtl -e -o reports'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/_Access Recruitment Websites/non-functional-testing'
+- task: PublishReleaseArtifact@1
+  inputs:
+    artifactPath: '$(System.DefaultWorkingDirectory)/_Access Recruitment Websites/non-functional-testing'
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
