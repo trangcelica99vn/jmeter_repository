@@ -16,7 +16,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'jmeter -n -t Diversities.jmx -l results.jtl -e -o reports'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/_Access Recruitment Websites/non-functional-testing'
 - task: PublishReleaseArtifact@1
   inputs:
     artifactPath: '$(System.DefaultWorkingDirectory)/_Access Recruitment Websites/non-functional-testing'
