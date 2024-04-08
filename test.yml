@@ -1,0 +1,37 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y openjdk-11-jdk
+    sudo apt-get install -y mutt
+  displayName: 'Install OpenJDK 11 and Mutt'
+
+- script: |
+    sudo apt-get install -y mailutils
+  displayName: 'Install Mailutils'
+
+- script: |
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz
+    tar -xf apache-jmeter-5.4.1.tgz
+  displayName: 'Download and extract JMeter'
+
+- script: |
+    ./apache-jmeter-5.4.1/bin/jmeter -n -t Some_test_scenarios.jmx -l results.jtl -e -o $(System.DefaultWorkingDirectory)/html-report
+  displayName: 'Run JMeter script and generate HTML report'
+
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/results.jtl'
+    testRunTitle: 'JMeter Test Results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: 'JMeterResults'
+    pathToPublish: '$(System.DefaultWorkingDirectory)/results.jtl'
+
+- script: |
+    echo "The JMeter test has been completed. Please find the results attached." | mail -s "JMeter Test Report" -a "$(System.DefaultWorkingDirectory)/results.jtl" trang.thinguyen@theaccessgroup.com
+  displayName: 'Send Email Notification'
